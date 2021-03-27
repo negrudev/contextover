@@ -11,7 +11,7 @@ interface ContextService<Value, InitialProps = void> {
   useContext: () => Value;
 }
 
-export const createContextService = <Result, InitialProps = undefined>(
+export const createContextOver = <Result, InitialProps = undefined>(
   useHook: (initialProps: InitialProps) => Result
 ): ContextService<Result, InitialProps> => {
   const Context = React.createContext<Result | typeof MISSING_CONTEXT>(MISSING_CONTEXT);

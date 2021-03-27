@@ -57,7 +57,8 @@
       "ts",
       "jsx",
       "js"
-    ]
+    ],
+    "rootDir": "./src"
   },
   "husky": {
     "hooks": {

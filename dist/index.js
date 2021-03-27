@@ -1,7 +1,7 @@
 import { jsx as _jsx } from "react/jsx-runtime";
 import React from 'react';
 const MISSING_CONTEXT = Symbol();
-export const createContextService = (useHook) => {
+export const createContextOver = (useHook) => {
     const Context = React.createContext(MISSING_CONTEXT);
     const ProvideContext = ({ initialProps, children }) => {
         const hookValue = useHook(initialProps);
