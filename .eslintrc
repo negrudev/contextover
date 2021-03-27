@@ -1,0 +1,15 @@
+{
+  "root": true,
+  "extends": ["prettier", "plugin:react-hooks/recommended"],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["react", "@typescript-eslint", "react-hooks", "prettier"],
+  "rules": {
+    "prettier/prettier": "error",
+    "react-native/no-inline-styles": 0,
+    "no-shadow": 0
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module"
+  }
+}
