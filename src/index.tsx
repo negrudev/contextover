@@ -27,7 +27,7 @@ export const createContextOver = <Result, InitialProps = undefined>(
 
     if (value === MISSING_CONTEXT)
       throw new Error(
-        `Component ${useHook.name} is consuming a context without a Provider. Wrap it inside a Provider`
+        `Component ${useHook.name} is consuming a context without a Provider. Wrap it inside a Provider (${useHook.name}.ProvideContext)`
       );
     return value;
   };
