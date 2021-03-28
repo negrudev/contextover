@@ -1,31 +1,31 @@
 import { useState } from 'react';
 import { renderHook, act } from '@testing-library/react-hooks';
-import { createContextOver } from './index';
+import { createContextOver } from '../index';
 
-const useCountTestHook = (passedByContextString?: string) => {
+const useCountTestHook = ({ passedByContextObject }: { passedByContextObject: object }) => {
   const [count, setCount] = useState(0);
 
   const incrementCount = () => setCount((currentCount) => currentCount + 1);
 
-  return { count, incrementCount, passedByContextString };
+  return { count, incrementCount, passedByContextObject };
 };
 
-describe('createContextOver utility', () => {
+describe('createContextOver utility - hook with props', () => {
+  const passedByContextObject = { key: 'initial' };
   const useCountTestHookContext = createContextOver(useCountTestHook);
 
   it('should make a context out of a react hook', () => {
-    const stringToPassByContext = 'context-string';
     const { result } = renderHook(() => useCountTestHookContext.useContext(), {
-      wrapper: ({ children, testString }) => (
-        <useCountTestHookContext.ProvideContext initialProps={testString}>
+      wrapper: ({ children, ...initialProps }) => (
+        <useCountTestHookContext.ProvideContext {...initialProps}>
           {children}
         </useCountTestHookContext.ProvideContext>
       ),
-      initialProps: { testString: stringToPassByContext },
+      initialProps: { passedByContextObject },
     });
 
     expect(result.current.count).toEqual(0);
-    expect(result.current.passedByContextString).toEqual(stringToPassByContext);
+    expect(result.current.passedByContextObject).toBe(passedByContextObject);
     expect(result.error).toBeUndefined();
   });
 
@@ -35,14 +35,14 @@ describe('createContextOver utility', () => {
     expect(result.error).not.toBeUndefined();
   });
 
-  it('should provide new values on context state change', () => {
+  it('should provide same passed down by prop value on context state change', () => {
     const { result } = renderHook(() => useCountTestHookContext.useContext(), {
-      wrapper: ({ children, initialProps }) => (
-        <useCountTestHookContext.ProvideContext {...{ initialProps }}>
+      wrapper: ({ children, ...initialProps }) => (
+        <useCountTestHookContext.ProvideContext {...initialProps}>
           {children}
         </useCountTestHookContext.ProvideContext>
       ),
-      initialProps: undefined,
+      initialProps: { passedByContextObject },
     });
 
     expect(result.current.count).toEqual(0);
@@ -55,26 +55,25 @@ describe('createContextOver utility', () => {
   });
 
   it('should rerender children on provider props change', () => {
-    const stringToPassByContext = 'context-string';
     const { result, rerender } = renderHook(() => useCountTestHookContext.useContext(), {
-      wrapper: ({ children, testString }) => (
-        <useCountTestHookContext.ProvideContext initialProps={testString}>
+      wrapper: ({ children, ...initialProps }) => (
+        <useCountTestHookContext.ProvideContext {...initialProps}>
           {children}
         </useCountTestHookContext.ProvideContext>
       ),
       initialProps: {
-        testString: stringToPassByContext,
+        passedByContextObject,
       },
     });
 
     expect(result.current.count).toEqual(0);
-    expect(result.current.passedByContextString).toEqual(stringToPassByContext);
+    expect(result.current.passedByContextObject).toBe(passedByContextObject);
 
-    const newStringToPassByContext = 'new-context-string';
+    const newPassedByContextObject = { key: 'new' };
     rerender({
-      testString: newStringToPassByContext,
+      passedByContextObject: newPassedByContextObject,
     });
 
-    expect(result.current.passedByContextString).toEqual(newStringToPassByContext);
+    expect(result.current.passedByContextObject).toBe(newPassedByContextObject);
   });
 });

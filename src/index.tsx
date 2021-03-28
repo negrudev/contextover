@@ -1,23 +1,21 @@
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 
 const MISSING_CONTEXT = Symbol();
 
-interface ProviderProps<T = undefined> {
-  initialProps: T;
-}
+type ProvidedContext<ProviderProps = {}> = (props: PropsWithChildren<ProviderProps>) => JSX.Element;
 
-interface ContextService<Value, InitialProps = void> {
-  ProvideContext: React.FC<ProviderProps<InitialProps>>;
+interface ContextService<Value, ProviderProps = {}> {
+  ProvideContext: ProvidedContext<ProviderProps>;
   useContext: () => Value;
 }
 
-export const createContextOver = <Result, InitialProps = undefined>(
-  useHook: (initialProps: InitialProps) => Result
-): ContextService<Result, InitialProps> => {
+export const createContextOver = <Result, ProviderProps = {}>(
+  useHook: (props: ProviderProps) => Result
+): ContextService<Result, ProviderProps> => {
   const Context = React.createContext<Result | typeof MISSING_CONTEXT>(MISSING_CONTEXT);
 
-  const ProvideContext: React.FC<ProviderProps<InitialProps>> = ({ initialProps, children }) => {
-    const hookValue = useHook(initialProps);
+  const ProvideContext = ({ children, ...props }: PropsWithChildren<ProviderProps>) => {
+    const hookValue = useHook(props as ProviderProps);
 
     return <Context.Provider value={hookValue}>{children}</Context.Provider>;
   };

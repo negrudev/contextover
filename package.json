@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "test": "jest",
-    "lint": "eslint ./ --ext .js,.jsx,.ts,.tsx",
+    "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx",
     "tscheck": "tsc --project tsconfig.json --noEmit --skipLibCheck",
     "pretty:staged": "pretty-quick --staged",
     "pretty:all": "prettier --write '**/*.{ts,tsx,js,jsx,css,html,json}'"
