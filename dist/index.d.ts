@@ -1,10 +1,8 @@
-import React from 'react';
-interface ProviderProps<T = undefined> {
-    initialProps: T;
-}
-interface ContextService<Value, InitialProps = void> {
-    ProvideContext: React.FC<ProviderProps<InitialProps>>;
+import { PropsWithChildren } from 'react';
+declare type ProvidedContext<ProviderProps = {}> = (props: PropsWithChildren<ProviderProps>) => JSX.Element;
+interface ContextService<Value, ProviderProps = {}> {
+    ProvideContext: ProvidedContext<ProviderProps>;
     useContext: () => Value;
 }
-export declare const createContextOver: <Result, InitialProps = undefined>(useHook: (initialProps: InitialProps) => Result) => ContextService<Result, InitialProps>;
+export declare const createContextOver: <Result, ProviderProps = {}>(useHook: (props: ProviderProps) => Result) => ContextService<Result, ProviderProps>;
 export {};
