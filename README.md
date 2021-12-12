@@ -40,7 +40,7 @@ const Counter = () => {
 }
 
 const App = () => (
-    <useCountContext.ProvideContext initialCount={0}>
+    <useCountContext.ProvideContext initialCount={0} />
       <Counter initialCount={0}>
     </useCountContext.ProvideContext>
 )
