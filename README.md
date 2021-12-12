@@ -16,7 +16,7 @@
 ### Create context over hook
 
 ```typescript
-const useCount = () => {
+const useCount = ({ initialCount }) => {
   const [count, setCount] = useState(initialCount);
 
   const incrementCount = () => setCount((currentCount) => currentCount + 1);
