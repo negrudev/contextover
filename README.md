@@ -33,15 +33,14 @@ const useCountContext = createContextOver(useCount);
 
 ```typescript
 const Counter = () => {
-    const { count, incrementCount } = useCountContext.useContext(initialCount);
+  const { count, incrementCount } = useCountContext.useContext(initialCount);
 
-    return <div onClick={incrementCount}>Count: {count}</div>
-
-}
+  return <div onClick={incrementCount}>Count: {count}</div>;
+};
 
 const App = () => (
-    <useCountContext.ProvideContext initialCount={0} />
-      <Counter initialCount={0}>
-    </useCountContext.ProvideContext>
-)
+  <useCountContext.ProvideContext initialCount={0}>
+    <Counter initialCount={0} />
+  </useCountContext.ProvideContext>
+);
 ```
