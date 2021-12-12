@@ -1,8 +1,8 @@
 # ContextOver - a simple context provider
 
-## - based on React Context & jamiebuilds/unstated-next
+- based on React Context & jamiebuilds/unstated-next
 
-## - offers a context over a hook contained logic & values
+- offers a context over a hook contained logic & values
 
 </br>
 
@@ -41,7 +41,7 @@ const Counter = () => {
 
 const App = () => (
     <useCountContext.ProvideContext initialCount={0}>
-    <Counter initialCount={0}>
+      <Counter initialCount={0}>
     </useCountContext.ProvideContext>
 )
 ```
