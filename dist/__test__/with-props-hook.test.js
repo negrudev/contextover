@@ -9,7 +9,7 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import { jsx as _jsx } from "react/jsx-runtime";
+import React from 'react';
 import { useState } from 'react';
 import { renderHook, act } from '@testing-library/react-hooks';
 import { createContextOver } from '../index';
@@ -25,7 +25,7 @@ describe('createContextOver utility - hook with props', () => {
         const { result } = renderHook(() => useCountTestHookContext.useContext(), {
             wrapper: (_a) => {
                 var { children } = _a, initialProps = __rest(_a, ["children"]);
-                return (_jsx(useCountTestHookContext.ProvideContext, Object.assign({}, initialProps, { children: children }), void 0));
+                return (React.createElement(useCountTestHookContext.ProvideContext, Object.assign({}, initialProps), children));
             },
             initialProps: { passedByContextObject },
         });
@@ -41,7 +41,7 @@ describe('createContextOver utility - hook with props', () => {
         const { result } = renderHook(() => useCountTestHookContext.useContext(), {
             wrapper: (_a) => {
                 var { children } = _a, initialProps = __rest(_a, ["children"]);
-                return (_jsx(useCountTestHookContext.ProvideContext, Object.assign({}, initialProps, { children: children }), void 0));
+                return (React.createElement(useCountTestHookContext.ProvideContext, Object.assign({}, initialProps), children));
             },
             initialProps: { passedByContextObject },
         });
@@ -55,7 +55,7 @@ describe('createContextOver utility - hook with props', () => {
         const { result, rerender } = renderHook(() => useCountTestHookContext.useContext(), {
             wrapper: (_a) => {
                 var { children } = _a, initialProps = __rest(_a, ["children"]);
-                return (_jsx(useCountTestHookContext.ProvideContext, Object.assign({}, initialProps, { children: children }), void 0));
+                return (React.createElement(useCountTestHookContext.ProvideContext, Object.assign({}, initialProps), children));
             },
             initialProps: {
                 passedByContextObject,

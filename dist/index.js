@@ -9,7 +9,6 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import { jsx as _jsx } from "react/jsx-runtime";
 import React from 'react';
 const MISSING_CONTEXT = Symbol();
 export const createContextOver = (useHook) => {
@@ -17,7 +16,7 @@ export const createContextOver = (useHook) => {
     const ProvideContext = (_a) => {
         var { children } = _a, props = __rest(_a, ["children"]);
         const hookValue = useHook(props);
-        return _jsx(Context.Provider, Object.assign({ value: hookValue }, { children: children }), void 0);
+        return React.createElement(Context.Provider, { value: hookValue }, children);
     };
     const useContext = () => {
         const value = React.useContext(Context);

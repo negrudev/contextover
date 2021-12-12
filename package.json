@@ -1,6 +1,6 @@
 {
   "name": "contextover",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A context provider for hook based content, based on jamiebuilds/unstated-next.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -10,6 +10,7 @@
   "scripts": {
     "test": "jest",
     "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx",
+    "build": "tsc --project tsconfig.json",
     "tscheck": "tsc --project tsconfig.json --noEmit --skipLibCheck",
     "pretty:staged": "pretty-quick --staged",
     "pretty:all": "prettier --write '**/*.{ts,tsx,js,jsx,css,html,json}'"

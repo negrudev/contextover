@@ -1,4 +1,4 @@
-import { jsx as _jsx } from "react/jsx-runtime";
+import React from 'react';
 import { useState } from 'react';
 import { renderHook, act } from '@testing-library/react-hooks';
 import { createContextOver } from '../index';
@@ -11,7 +11,7 @@ describe('createContextOver utility - no props hook', () => {
     const useCountTestHookContext = createContextOver(useCountTestHook);
     it('should make a context out of a react hook', () => {
         const { result } = renderHook(() => useCountTestHookContext.useContext(), {
-            wrapper: ({ children }) => (_jsx(useCountTestHookContext.ProvideContext, { children: children }, void 0)),
+            wrapper: ({ children }) => (React.createElement(useCountTestHookContext.ProvideContext, null, children)),
         });
         expect(result.current.count).toEqual(0);
         expect(result.error).toBeUndefined();
@@ -22,7 +22,7 @@ describe('createContextOver utility - no props hook', () => {
     });
     it('should provide new values on context state change', () => {
         const { result } = renderHook(() => useCountTestHookContext.useContext(), {
-            wrapper: ({ children }) => (_jsx(useCountTestHookContext.ProvideContext, { children: children }, void 0)),
+            wrapper: ({ children }) => (React.createElement(useCountTestHookContext.ProvideContext, null, children)),
         });
         expect(result.current.count).toEqual(0);
         act(() => {
