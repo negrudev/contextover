@@ -1,12 +1,13 @@
 {
   "name": "contextover",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "description": "A context provider for hook based content, based on jamiebuilds/unstated-next.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
     "/dist"
   ],
+  "type": "module",
   "scripts": {
     "test": "jest",
     "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx",
