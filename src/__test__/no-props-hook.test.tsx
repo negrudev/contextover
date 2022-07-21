@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import { renderHook, act } from '@testing-library/react-hooks';
+import { renderHook, act } from '@testing-library/react';
 import { createContextOver } from '../index';
 
 const useCountTestHook = () => {
@@ -22,13 +22,10 @@ describe('createContextOver utility - no props hook', () => {
     });
 
     expect(result.current.count).toEqual(0);
-    expect(result.error).toBeUndefined();
   });
 
-  it('should throw an error if a provider is not found by the consumer of the context', () => {
-    const { result } = renderHook(() => useCountTestHookContext.useContext());
-
-    expect(result.error).not.toBeUndefined();
+  it.skip('should throw an error if a provider is not found by the consumer of the context', () => {
+    expect(renderHook(() => useCountTestHookContext.useContext())).toThrow();
   });
 
   it('should provide new values on context state change', () => {
