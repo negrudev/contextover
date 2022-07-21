@@ -1,6 +1,6 @@
 {
   "name": "contextover",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A context provider for hook based content, based on jamiebuilds/unstated-next.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
